@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="head" style="margin-top: 0;">
+  {{ page.title }}
+</h1>
+<div class="container">
+  <div class="blog-body">
+    <p>{{ page.date }}</p>
+    {{ page.content | safe }}
+    </div>
+  </div>
+{% endblock content %}

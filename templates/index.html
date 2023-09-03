@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/custom.css">
+    <title>Responsive</title>
+</head>
+
+<body>
+    <div class="text-center">
+
+        <div class="head">
+            <p>Human are the smartest!</p>
+            <h1>Blog is the best way to tell a story</h1>
+        </div>
+
+        <div class="container">
+            <h2>Here is a Story</h2>
+            <section class="split">
+                <div>
+                    <p>After the collapse of the tech industry, life became very hard. <b>HTML CSS JS developer</b> were found
+                        on the street searching for food and job, as the number of job decreased in the <i>FANG</i>, the number
+                        of people looking  jobs in startup increased, causing even more chaos. The failed developers started
+                        selling their body part to survive.
+                    </p>
+                </div>
+                <div>
+                    <p><b>Now</b> are you scared. Don't be scared. Life is unpredictable, this can totally happen. So be a bit
+                        <b>religious</b>, go spend time with your kids and family. Don't think too much, after all, you can't
+                        avoid things that will happen. Maybe you can try creating a <b>startup</b> to help this hopeless developer
+                        connect with customers.</p>
+                </div>
+            </section>
+            <center>
+                <h2>Blog</h2>
+                <div class="blog">
+                    {% set section = get_section(path="blog/_index.md") %}
+                    {% for page in section.pages %}
+                    <section class="post">
+                        <a href="{{ page.path }}">
+                            <b>{{ page.title }}</b><br>
+                            <small><i>{{ page.date}}</i><br></small>
+                            <span>{{ page.extra.text }}</span>
+                        </a>
+                    </section>
+                    {% endfor %}
+                </div>
+            </center>
+        </div>
+    </div>
+</body>
+
+</html>

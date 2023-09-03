@@ -1,5 +1,5 @@
 +++
-title = "what should i do"
+title = "what should i do with life"
 date = 2022-05-22
 [extra]
 text="Its already half of the year is over...."

@@ -1,1 +1,1 @@
-# cu8code.github.com
+# cu8code.github.io

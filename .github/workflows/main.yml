@@ -15,3 +15,7 @@ jobs:
           PAGES_BRANCH: gh-pages
           # Provide personal access token
           TOKEN: ${{ secrets.TOKEN }}
+    if: github.ref == 'ref/heads/gh-pages'
+    steps:
+      - name: deploy
+        uses: ghcr.io/actions/jekyll-build-pages:v1.0.8

@@ -36,8 +36,9 @@
             </section>
             <center>
                 <h2>Blog</h2>
+                <div style="display:flex;flex-direction:row; gap:1rem">
                 <div class="blog">
-                    {% set section = get_section(path="blog/_index.md") %}
+                    {% set section = get_section(path="tech/_index.md") %}
                     {% for page in section.pages %}
                     <section class="post">
                         <a href="{{ page.path }}">
@@ -47,6 +48,19 @@
                         </a>
                     </section>
                     {% endfor %}
+                </div>
+                <div class="blog">
+                    {% set section = get_section(path="life/_index.md") %}
+                    {% for page in section.pages %}
+                    <section class="post">
+                        <a href="{{ page.path }}">
+                            <b>{{ page.title }}</b><br>
+                            <small><i>{{ page.date}}</i><br></small>
+                            <span>{{ page.extra.text }}</span>
+                        </a>
+                    </section>
+                    {% endfor %}
+                </div>
                 </div>
             </center>
         </div>

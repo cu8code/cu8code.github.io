@@ -17,7 +17,6 @@ but i dont call myself react dev or some shit. Now i am an software developer.
 **How is UEM**
 Let not talk about it, the only good part about is that i have some good 
 group of friends.
-
-- the college is small (smaller than brs or any other school)
-- the faculty are okis (they phd from iv lege college)
-- assignment are mind bending
+the college is small (smaller than brs or any other school)
+the faculty are okis (they phd from iv lege college)
+assignment are mind bending

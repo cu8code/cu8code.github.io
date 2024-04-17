@@ -1,0 +1,14 @@
+---
+import Navigation from "../components/Navigation.astro";
+const allpost = await Astro.glob("./posts/*.md*");
+---
+<Navigation />
+<ul>
+    {
+        allpost.map((post) => {
+            return <li>
+                <a href={post.url}>{post.frontmatter.title}</a>
+            </li>;
+        })
+    }
+</ul>

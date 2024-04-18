@@ -1,9 +1,8 @@
 ---
-import HeroLayout from "@/layouts/heroLayout.astro";
 const allpost = await Astro.glob("./posts/*.md*");
 ---
 
-<HeroLayout>
+
     <ul>
         {
             allpost.map((post) => {
@@ -15,4 +14,3 @@ const allpost = await Astro.glob("./posts/*.md*");
             })
         }
     </ul>
-</HeroLayout>

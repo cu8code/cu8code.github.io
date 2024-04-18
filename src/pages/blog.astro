@@ -3,6 +3,11 @@ const allpost = await Astro.glob("./posts/*.md*");
 import Page from "@/layouts/Page.astro";
 ---
 
+<style>
+    a {
+        font-size: 1.8rem;
+    }
+</style>
 <Page>
     <ul>
         {

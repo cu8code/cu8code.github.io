@@ -1,5 +1,6 @@
 ---
 import Navigation from "@/components/Navigation.astro";
+import Linkstree from "@/components/Linkstree.astro";
 let title = 'This is a cool page';
 ---
 
@@ -10,8 +11,20 @@ let title = 'This is a cool page';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
 </head>
+<style is:global>
+    body {
+        font-family: monospace;
+        font-size: 0.9rem;
+        background-color: black;
+        color: whitesmoke;
+    }
+    a {
+        color: yellow;
+    }
+</style>
 <body>
     <Navigation />
     <slot />
+    <Linkstree />
 </body>
 </html>

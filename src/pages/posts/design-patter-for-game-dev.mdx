@@ -4,7 +4,6 @@ pubDate: 2024-04-18
 description: 'design patter for game dev!'
 author: 'Ankan Roy'
 layout: ../../layouts/Page.astro
-tags: ["css", "web", "learning in public"]
 ---
 
 **Singleton Pattern**
@@ -319,9 +318,6 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 ```
 
 In this example, the `Command` class and its derived classes (`JumpCommand` and `ShootCommand`) encapsulate game actions. The `InputHandler` class receives input events and creates the corresponding commands, executing them and adding them to a command history. The player can then undo the last action by calling the `undo_last_action()` method on the `InputHandler`.
-
-These are just a few more examples of design patterns commonly used in game development with GDScript. Each pattern serves a specific purpose and can help you organize your game code, making it more maintainable, scalable, and testable.
-
 
 **Flyweight Pattern**
 

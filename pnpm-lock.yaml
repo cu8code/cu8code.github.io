@@ -17,7 +17,16 @@ dependencies:
   '@astrojs/tailwind':
     specifier: ^5.1.0
     version: 5.1.0(astro@4.6.2)(tailwindcss@3.4.3)
-  '@fontsource/twinkle-star':
+  '@fontsource/lato':
+    specifier: ^5.0.20
+    version: 5.0.20
+  '@fontsource/lustria':
+    specifier: ^5.0.8
+    version: 5.0.8
+  '@fontsource/oswald':
+    specifier: ^5.0.19
+    version: 5.0.19
+  '@fontsource/quattrocento':
     specifier: ^5.0.19
     version: 5.0.19
   '@radix-ui/react-dropdown-menu':
@@ -959,8 +968,20 @@ packages:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
     dev: false
 
-  /@fontsource/twinkle-star@5.0.19:
-    resolution: {integrity: sha512-Ea0wV0BbXWS6tys8hcjViCOaSNh1ZDk0CbheMao+/VFHKZy1UB19LHHrCxksMgWxVIlu0N8+xGWj29rzBaAfhQ==}
+  /@fontsource/lato@5.0.20:
+    resolution: {integrity: sha512-2ej7KDuTFoea6Q2hWjx3Png1+MdNcW4V6l7sw/vNauuxCv9xBIZCmpXnTz9eVdj/5Ui//jiWWiQk57mGwjCNwA==}
+    dev: false
+
+  /@fontsource/lustria@5.0.8:
+    resolution: {integrity: sha512-3m5fE7w0ISM6HqtF38/M5TmGededAjiIo8Urzfy6Ms/l5gVENPDn7B4qBsmWDUBg0xzsA1eX9wUnP2QYeWswng==}
+    dev: false
+
+  /@fontsource/oswald@5.0.19:
+    resolution: {integrity: sha512-cpNK9lSleeu0P4RmNrqe6Va+mFwV81HCqH6vu0mYMhNiKTJj/13fNWhGbSy/R1gDNhEOPI+9NtK/bq0pesAeXw==}
+    dev: false
+
+  /@fontsource/quattrocento@5.0.19:
+    resolution: {integrity: sha512-ohfoSoNNJ9aaYrk5kozY81x/ePbTcfyzuFWLfHxgwIULjGYETORHXehpW7dxcD6K6COO8eCBYVV1IMWH02jZ2g==}
     dev: false
 
   /@isaacs/cliui@8.0.2:

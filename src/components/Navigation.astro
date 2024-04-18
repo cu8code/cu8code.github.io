@@ -4,12 +4,14 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        padding-top: 1rem;
     }
 
     .navigation-link {
         display: flex;
         flex-direction: row;
         gap: 1rem;
+        font-weight: 900;
     }
 
     .left {
@@ -19,23 +21,28 @@
         align-items: center;
     }
     .logo {
-        width: 60px;
+        width: 70px;
         height: 50px;
-        background: yellow;
+        background: var(--primary-font-color);
         border-radius: 10% 35% 35% 10%;
+    }
+    .name {
+        display: flex;
+        flex-direction: column;
+        font-weight: 900;
     }
 </style>
 <nav class="max-width">
     <div class="left">
         <div class="logo"></div>
-        <div>
+        <div class="name">
             <div>Ankan</div>
             <div>Roy</div>
         </div>
     </div>
     <div class="navigation-link">
-        <div><a href="/">~Home</a></div>
-        <div><a href="/blog">~Blog</a></div>
-        <div><a href="mailto:8ankanroy@gmail.com">~Colloborate</a></div>
+        <div><a href="/">Home</a></div>
+        <div><a href="/blog">Blog</a></div>
+        <div><a href="mailto:8ankanroy@gmail.com">Colloborate</a></div>
     </div>
 </nav>

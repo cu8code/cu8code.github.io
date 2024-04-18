@@ -1,0 +1,424 @@
+---
+title: 'design patter for game dev?'
+pubDate: 2024-04-18
+description: 'design patter for game dev!'
+author: 'Ankan Roy'
+layout: ../../layouts/Page.astro
+tags: ["css", "web", "learning in public"]
+---
+
+**Singleton Pattern**
+
+The Singleton Pattern is often used in game development to ensure that certain game-wide systems or managers have a single instance that can be accessed globally. Here's an example of a Singleton pattern implementation in GDScript:
+
+```gdscript
+# Singleton.gd
+extends Node
+
+var score: int = 0
+var lives: int = 3
+
+func update_score(score_change: int) -> void:
+    score += score_change
+
+func lose_life() -> void:
+    lives -= 1
+
+# Usage
+func _ready():
+    # Access the Singleton instance
+    Singleton.update_score(100)
+    Singleton.lose_life()
+```
+
+In this example, the `Singleton` class is a global node that can be accessed from anywhere in the game. It maintains the player's score and lives, and provides methods to update these values.
+
+**Observer Pattern**
+
+The Observer Pattern is useful for implementing event-driven systems in games, where one object's state change needs to be communicated to other dependent objects. Here's an example of the Observer Pattern in GDScript:
+
+```gdscript
+# Subject.gd
+extends Node
+
+signal health_changed(new_health)
+
+var _health: int = 100
+
+func take_damage(amount: int) -> void:
+    _health -= amount
+    emit_signal("health_changed", _health)
+
+# Observer.gd
+extends Node
+
+func _ready():
+    $HealthSubject.connect("health_changed", self, "_on_health_changed")
+
+func _on_health_changed(new_health: int) -> void:
+    print(f"Health: {new_health}")
+
+# Usage
+func _ready():
+    var health_subject = Node.new()
+    health_subject.name = "HealthSubject"
+    add_child(health_subject)
+
+    var observer = Node.new()
+    observer.name = "HealthObserver"
+    add_child(observer)
+
+    health_subject.take_damage(30)
+    # Output: Health: 70
+```
+
+In this example, the `HealthSubject` node emits a `health_changed` signal whenever the player's health changes. The `HealthObserver` node listens for this signal and updates the health display accordingly.
+
+**Factory Pattern**
+
+The Factory Pattern is useful for creating game objects based on certain criteria or configurations. Here's an example of a Factory Pattern implementation in GDScript:
+
+```gdscript
+# GameObject.gd
+class_name GameObject
+extends Node2D
+
+func update(delta: float) -> void:
+    pass
+
+func draw() -> void:
+    pass
+
+# Enemy.gd
+extends GameObject
+
+func _init(x: float, y: float, speed: float) -> void:
+    position = Vector2(x, y)
+    self.speed = speed
+
+func update(delta: float) -> void:
+    position.x += speed * delta
+
+func draw() -> void:
+    print(f"Drawing enemy at ({position.x}, {position.y})")
+
+# PowerUp.gd
+extends GameObject
+
+func _init(x: float, y: float, effect: String) -> void:
+    position = Vector2(x, y)
+    self.effect = effect
+
+func update(delta: float) -> void:
+    # Implement power-up logic
+    pass
+
+func draw() -> void:
+    print(f"Drawing power-up at ({position.x}, {position.y}) with effect: {effect}")
+
+# GameObjectFactory.gd
+class_name GameObjectFactory
+extends Node
+
+static func create_game_object(object_type: String, *args) -> GameObject:
+    match object_type:
+        "enemy":
+            return Enemy.new(args[0], args[1], args[2])
+        "power_up":
+            return PowerUp.new(args[0], args[1], args[2])
+        _:
+            raise ValueError(f"Unknown game object type: {object_type}")
+
+# Usage
+func _ready():
+    var enemy = GameObjectFactory.create_game_object("enemy", 10.0, 20.0, 2.5)
+    enemy.update(0.1)
+    enemy.draw()
+
+    var power_up = GameObjectFactory.create_game_object("power_up", 15.0, 30.0, "Speed Boost")
+    power_up.update(0.1)
+    power_up.draw()
+```
+
+In this example, the `GameObjectFactory` class provides a static method to create different types of game objects, such as `Enemy` and `PowerUp`. The factory hides the specific implementation details of each object, allowing the game to create objects without knowing their concrete types.
+
+**Strategy Pattern**
+
+The Strategy Pattern allows you to define a family of algorithms, encapsulate each one, and make them interchangeable. In games, this pattern can be useful for implementing different AI behaviors or movement strategies for enemies.
+
+```gdscript
+# EnemyBehavior.gd
+class_name EnemyBehavior
+extends Node
+
+func move(enemy: Enemy, delta: float) -> void:
+    pass
+
+# PatrolBehavior.gd
+extends EnemyBehavior
+
+func move(enemy: Enemy, delta: float) -> void:
+    enemy.position.x += enemy.speed * delta
+
+# ChaseBehavior.gd
+extends EnemyBehavior
+
+func move(enemy: Enemy, delta: float) -> void:
+    var direction = (enemy.target.position - enemy.position).normalized()
+    enemy.position += direction * enemy.speed * delta
+
+# Enemy.gd
+extends Node2D
+
+var behavior: EnemyBehavior
+var target: Node2D
+var speed: float
+
+func _ready():
+    # Set the initial behavior
+    behavior = PatrolBehavior.new()
+
+func update(delta: float):
+    behavior.move(self, delta)
+
+# Usage
+func _ready():
+    var enemy = Enemy.new()
+    enemy.target = player  # Assuming 'player' is a Node2D
+    enemy.speed = 2.5
+
+    # Change the behavior at runtime
+    enemy.behavior = ChaseBehavior.new()
+    enemy.update(delta)
+```
+
+In this example, the `EnemyBehavior` class and its derived classes (`PatrolBehavior` and `ChaseBehavior`) encapsulate different movement strategies for the `Enemy` class. The `Enemy` class can switch between these behaviors at runtime, allowing for more flexible and dynamic enemy AI.
+
+**Decorator Pattern**
+
+The Decorator Pattern allows you to dynamically add or remove responsibilities from an object by wrapping it with other objects. In games, this pattern can be useful for adding or modifying the behavior of game entities at runtime.
+
+```gdscript
+# GameObject.gd
+class_name GameObject
+extends Node2D
+
+func update(delta: float) -> void:
+    pass
+
+# ShieldDecorator.gd
+extends GameObject
+
+var _game_object: GameObject
+
+func _init(game_object: GameObject) -> void:
+    _game_object = game_object
+
+func update(delta: float) -> void:
+    _game_object.update(delta)
+    # Add shield-related logic
+
+# InvincibilityDecorator.gd
+extends GameObject
+
+var _game_object: GameObject
+
+func _init(game_object: GameObject) -> void:
+    _game_object = game_object
+
+func update(delta: float) -> void:
+    _game_object.update(delta)
+    # Add invincibility-related logic
+
+# Usage
+func _ready():
+    var player = GameObject.new()
+    player.update(delta)
+
+    # Add a shield to the player
+    var shielded_player = ShieldDecorator.new(player)
+    shielded_player.update(delta)
+
+    # Add invincibility to the shielded player
+    var invincible_player = InvincibilityDecorator.new(shielded_player)
+    invincible_player.update(delta)
+```
+
+In this example, the `ShieldDecorator` and `InvincibilityDecorator` classes wrap the `GameObject` class, adding additional responsibilities (shield and invincibility, respectively) to the game object. This allows you to dynamically modify the behavior of the game object without changing its core implementation.
+
+**Command Pattern**
+
+The Command Pattern encapsulates a request as an object, thereby allowing you to parameterize clients with different requests, queue or log requests, and support undoable operations. In games, this pattern can be useful for implementing input handling, action queueing, and undo/redo functionality.
+
+```gdscript
+# Command.gd
+class_name Command
+extends Resource
+
+func execute() -> void:
+    pass
+
+func undo() -> void:
+    pass
+
+# JumpCommand.gd
+extends Command
+
+var _player: Player
+
+func _init(player: Player) -> void:
+    _player = player
+
+func execute() -> void:
+    _player.jump()
+
+func undo() -> void:
+    _player.land()
+
+# ShootCommand.gd
+extends Command
+
+var _player: Player
+
+func _init(player: Player) -> void:
+    _player = player
+
+func execute() -> void:
+    _player.shoot()
+
+func undo() -> void:
+    _player.stop_shooting()
+
+# InputHandler.gd
+extends Node
+
+var _commands: Array = []
+
+func handle_input(input_event: InputEvent) -> void:
+    if input_event.is_action_pressed("jump"):
+        var jump_command = JumpCommand.new(self)
+        _commands.append(jump_command)
+        jump_command.execute()
+    elif input_event.is_action_pressed("shoot"):
+        var shoot_command = ShootCommand.new(self)
+        _commands.append(shoot_command)
+        shoot_command.execute()
+
+func undo_last_action() -> void:
+    if not _commands.empty():
+        var last_command = _commands.pop_back()
+        last_command.undo()
+
+# Usage
+func _input(event: InputEvent) -> void:
+    $InputHandler.handle_input(event)
+
+func _unhandled_key_input(event: InputEventKey) -> void:
+    if event.is_action_pressed("undo"):
+        $InputHandler.undo_last_action()
+```
+
+In this example, the `Command` class and its derived classes (`JumpCommand` and `ShootCommand`) encapsulate game actions. The `InputHandler` class receives input events and creates the corresponding commands, executing them and adding them to a command history. The player can then undo the last action by calling the `undo_last_action()` method on the `InputHandler`.
+
+These are just a few more examples of design patterns commonly used in game development with GDScript. Each pattern serves a specific purpose and can help you organize your game code, making it more maintainable, scalable, and testable.
+
+
+**Flyweight Pattern**
+
+The Flyweight Pattern is used to minimize memory usage by sharing as much data as possible with similar objects. In games, this pattern can be useful for managing a large number of similar game objects, such as trees, rocks, or other environmental elements.
+
+```gdscript
+# FlyweightFactory.gd
+class_name FlyweightFactory
+extends Node
+
+var _flyweights: Dictionary = {}
+
+func get_flyweight(key: String) -> Flyweight:
+    if not _flyweights.has(key):
+        _flyweights[key] = Flyweight.new(key)
+    return _flyweights[key]
+
+# Flyweight.gd
+class_name Flyweight
+extends Node2D
+
+var _intrinsic_state: Dictionary
+
+func _init(key: String) -> void:
+    match key:
+        "tree":
+            _intrinsic_state = { "model": "tree01", "color": Color.green }
+        "rock":
+            _intrinsic_state = { "model": "rock02", "color": Color.gray }
+        _:
+            _intrinsic_state = {}
+
+func draw() -> void:
+    # Draw the flyweight object using the intrinsic state
+    print(f"Drawing {_intrinsic_state.model} with color {_intrinsic_state.color}")
+
+# Usage
+func _ready():
+    var factory = FlyweightFactory.new()
+    var tree1 = factory.get_flyweight("tree")
+    tree1.draw()  # Drawing tree01 with color (0.0, 1.0, 0.0, 1.0)
+
+    var tree2 = factory.get_flyweight("tree")
+    tree2.draw()  # Drawing tree01 with color (0.0, 1.0, 0.0, 1.0)
+
+    var rock = factory.get_flyweight("rock")
+    rock.draw()  # Drawing rock02 with color (0.5, 0.5, 0.5, 1.0)
+```
+
+In this example, the `FlyweightFactory` class manages the creation and retrieval of `Flyweight` objects. The `Flyweight` class encapsulates the intrinsic state of the game object (such as its model and color) and provides a `draw()` method to render the object. By sharing the intrinsic state between similar objects, the Flyweight Pattern can significantly reduce memory usage in games with a large number of environmental elements.
+
+**Prototype Pattern**
+
+The Prototype Pattern is used to create new objects by copying an existing object, rather than creating new objects from scratch. This can be particularly useful in game development when you need to create many similar game objects with slight variations.
+
+```gdscript
+# Prototype.gd
+class_name Prototype
+extends Resource
+
+var _properties: Dictionary = {}
+
+func _init(properties: Dictionary) -> void:
+    _properties = properties.duplicate()
+
+func clone() -> Prototype:
+    return Prototype.new(_properties)
+
+# EnemyPrototype.gd
+extends Prototype
+
+func _init(properties: Dictionary) -> void:
+    super(properties)
+
+func create_enemy() -> Enemy:
+    var enemy = Enemy.new()
+    enemy.position = Vector2(_properties.position.x, _properties.position.y)
+    enemy.speed = _properties.speed
+    enemy.health = _properties.health
+    return enemy
+
+# Usage
+func _ready():
+    var enemy_prototype = EnemyPrototype.new({
+        "position": Vector2(100, 200),
+        "speed": 2.5,
+        "health": 100
+    })
+
+    var enemy1 = enemy_prototype.create_enemy()
+    var enemy2 = enemy_prototype.clone().create_enemy()
+    var enemy3 = enemy_prototype.clone().create_enemy()
+
+    # The three enemies have the same initial properties
+```
+
+In this example, the `Prototype` class provides a base implementation for creating cloned objects. The `EnemyPrototype` class extends `Prototype` and adds the logic to create new `Enemy` instances based on the stored properties.
+
+By using the Prototype Pattern, you can create new game objects with minimal overhead, as you only need to create the initial prototype and then clone it as needed. This can be particularly useful for spawning large numbers of similar enemies or other game objects.
+

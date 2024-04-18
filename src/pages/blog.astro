@@ -1,14 +1,18 @@
 ---
-import Navigation from "../components/Navigation.astro";
+import HeroLayout from "@/layouts/heroLayout.astro";
 const allpost = await Astro.glob("./posts/*.md*");
 ---
-<Navigation />
-<ul>
-    {
-        allpost.map((post) => {
-            return <li>
-                <a href={post.url}>{post.frontmatter.title}</a>
-            </li>;
-        })
-    }
-</ul>
+
+<HeroLayout>
+    <ul>
+        {
+            allpost.map((post) => {
+                return (
+                    <li>
+                        <a href={post.url}>{post.frontmatter.title}</a>
+                    </li>
+                );
+            })
+        }
+    </ul>
+</HeroLayout>

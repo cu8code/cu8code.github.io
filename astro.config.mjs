@@ -1,9 +1,10 @@
 import { defineConfig } from 'astro/config';
-
 import mdx from "@astrojs/mdx";
+import react from "@astrojs/react";
+
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx()],
-  site:"https://cu8code.github.io",
+  integrations: [mdx(), react()],
+  site: "https://cu8code.github.io"
 });

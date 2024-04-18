@@ -1,8 +1,9 @@
 ---
 const allpost = await Astro.glob("./posts/*.md*");
+import Page from "@/layouts/Page.astro";
 ---
 
-
+<Page>
     <ul>
         {
             allpost.map((post) => {
@@ -14,3 +15,4 @@ const allpost = await Astro.glob("./posts/*.md*");
             })
         }
     </ul>
+</Page>

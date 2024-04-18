@@ -1,7 +1,6 @@
 ---
 import Navigation from "@/components/Navigation.astro";
 import Linkstree from "@/components/Linkstree.astro";
-let title = 'This is a cool page';
 ---
 
 <!DOCTYPE html>
@@ -9,17 +8,27 @@ let title = 'This is a cool page';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
+    <title>This is a cool website</title>
 </head>
 <style is:global>
+    :root{
+        --primary-font-color: #fff2d5;
+        --primary-bg: #000000;
+    }
     body {
         font-family: monospace;
         font-size: 0.9rem;
-        background-color: black;
-        color: whitesmoke;
+        background-color: var(--primary-bg);
+        color: var(--primary-font-color);
     }
     a {
-        color: yellow;
+        color: #fff2d5;
+    }
+    .max-width {
+        max-width: 1400px;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
     }
 </style>
 <body>

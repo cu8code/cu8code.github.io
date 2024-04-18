@@ -1,14 +1,41 @@
 <style>
-    .navigation-link{
-        font-size: 1.5rem;
+    nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navigation-link {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .left {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+    }
+    .logo {
+        width: 60px;
+        height: 50px;
+        background: yellow;
+        border-radius: 10% 35% 35% 10%;
     }
 </style>
-<nav>
-    <div>Ankan Roy</div>
-    <br>
-    <div>
-        <div class="navigation-link"><a href="/">~Home</a></div>
-        <div class="navigation-link"><a href="/blog">~Blog</a></div>
-        <div class="navigation-link"><a href="mailto:8ankanroy@gmail.com">~Colloborate</a></div>
+<nav class="max-width">
+    <div class="left">
+        <div class="logo"></div>
+        <div>
+            <div>Ankan</div>
+            <div>Roy</div>
+        </div>
+    </div>
+    <div class="navigation-link">
+        <div><a href="/">~Home</a></div>
+        <div><a href="/blog">~Blog</a></div>
+        <div><a href="mailto:8ankanroy@gmail.com">~Colloborate</a></div>
     </div>
 </nav>

@@ -12,38 +12,6 @@ import "@fontsource/lato";
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>This is a cool website</title>
     </head>
-    <style is:global>
-        :root {
-            --primary-font-color:  rgb(245, 240, 236);
-            --primary-bg:  rgb(0, 0, 0);
-        }
-        *{
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-        h1,
-        h2,
-        h3 {
-            font-family: "lustria", serif;
-            font-weight: 900;
-        }
-        body {
-            font-family: "lato", sans-serif;
-            font-size: 1rem;
-            background-color: var(--primary-bg);
-            color: var(--primary-font-color);
-        }
-        a {
-            color: #fff2d5;
-        }
-        .max-width {
-            max-width: 1400px;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-        }
-    </style>
     <body>
         <Navigation />
         <slot />

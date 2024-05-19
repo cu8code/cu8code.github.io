@@ -1,45 +1,18 @@
 ---
+const allpost = await Astro.glob("./posts/*.md*");
 import Page from "@/layouts/Page.astro";
-import "@fontsource/oswald";
 ---
 
-<style>
-    h1 {
-        padding-top: 8rem;
-        text-align: justify;
-        font-family: "Oswald", sans-serif;
-        font-size: 9.9vw;
-        line-height: 1.9vw;
-    }
-    h1:after {
-        content: "";
-        display: inline-block;
-        width: 100%;
-    }
-    .hero-text {
-        display: flex;
-        flex-direction: row;
-        gap: 11vw;
-    }
-    .logo {
-        margin-top: 2rem;
-        width: 1600px;
-        height: 800px;
-        background: var(--primary-font-color);
-    }
-</style>
 <Page>
-    <h1 class="max-width">PRODUCT ENGENEER</h1>
-    <div class="hero-text max-width">
-        <div style="flex-basis: 1/3;">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum mollitia facilis nostrum quis ea modi at quasi quod neque illum rerum voluptate doloremque nemo nihil assumenda iure, quae cumque blanditiis.
-        </div>
-        <div style="flex-basis: 1/3;">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum mollitia facilis nostrum quis ea modi at quasi quod neque illum rerum voluptate doloremque nemo nihil assumenda iure, quae cumque blanditiis.
-        </div>
-        <div style="flex-basis: 1/3;">
-            CONTANT US
-        </div>
-    </div>
-    <div class="logo"></div>
+    <ul>
+        {
+            allpost.map((post) => {
+                return (
+                    <li>
+                        <a href={post.url}>{post.frontmatter.title}</a>
+                    </li>
+                );
+            })
+        }
+    </ul>
 </Page>

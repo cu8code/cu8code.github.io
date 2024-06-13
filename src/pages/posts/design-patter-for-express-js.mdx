@@ -1,19 +1,20 @@
 ---
-title: 'design patter for express.js?'
+title: "design patter for express.js?"
 pubDate: 2024-04-18
-description: 'design patter for express.js!'
-author: 'Ankan Roy'
+description: "design patter for express.js!"
+author: "Ankan Roy"
 layout: ../../layouts/Page.astro
 ---
-
 
 Certainly! Here are some of the common design patterns used in Express.js, a popular Node.js web application framework:
 
 1. **Middleware Pattern**:
+
    - The Middleware Pattern is a core concept in Express.js, where middleware functions are used to handle requests, transform data, and pass control to the next middleware function in the stack.
    - Example:
+
      ```javascript
-     const express = require('express');
+     const express = require("express");
      const app = express();
 
      // Middleware function to log request details
@@ -23,35 +24,39 @@ Certainly! Here are some of the common design patterns used in Express.js, a pop
      });
 
      // Route-specific middleware
-     app.get('/users', (req, res, next) => {
+     app.get("/users", (req, res, next) => {
        // Handle the /users route
-       res.send('Users page');
+       res.send("Users page");
      });
      ```
 
 2. **Router Pattern**:
+
    - The Router Pattern in Express.js allows you to create modular, mountable route handlers. This helps in organizing your application's routing logic into smaller, more manageable pieces.
    - Example:
+
      ```javascript
-     const express = require('express');
+     const express = require("express");
      const router = express.Router();
 
      // Define routes for the /api/users endpoint
-     router.get('/', (req, res) => {
-       res.send('Users list');
+     router.get("/", (req, res) => {
+       res.send("Users list");
      });
 
-     router.post('/', (req, res) => {
+     router.post("/", (req, res) => {
        // Handle creating a new user
-       res.send('New user created');
+       res.send("New user created");
      });
 
      module.exports = router;
      ```
 
 3. **Factory Pattern**:
+
    - The Factory Pattern is used in Express.js to create middleware functions and route handlers. This helps in abstracting the creation of these objects and making the code more maintainable.
    - Example:
+
      ```javascript
      // LoggerMiddleware.js
      module.exports = function createLoggerMiddleware() {
@@ -62,17 +67,19 @@ Certainly! Here are some of the common design patterns used in Express.js, a pop
      };
 
      // app.js
-     const express = require('express');
+     const express = require("express");
      const app = express();
-     const createLoggerMiddleware = require('./LoggerMiddleware');
+     const createLoggerMiddleware = require("./LoggerMiddleware");
 
      // Use the middleware factory to create a logger middleware
      app.use(createLoggerMiddleware());
      ```
 
 4. **Decorator Pattern**:
+
    - The Decorator Pattern is used in Express.js to add additional functionality to middleware functions or route handlers without modifying their core behavior.
    - Example:
+
      ```javascript
      // auth.js
      function requireAuth(req, res, next) {
@@ -80,7 +87,7 @@ Certainly! Here are some of the common design patterns used in Express.js, a pop
        if (req.user) {
          next();
        } else {
-         res.status(401).send('Unauthorized');
+         res.status(401).send("Unauthorized");
        }
      }
 
@@ -89,23 +96,29 @@ Certainly! Here are some of the common design patterns used in Express.js, a pop
          if (req.user.isAdmin) {
            handler(req, res, next);
          } else {
-           res.status(403).send('Forbidden');
+           res.status(403).send("Forbidden");
          }
        };
      }
 
      // app.js
-     app.get('/admin', requireAuth, withAdmin((req, res) => {
-       res.send('Admin page');
-     }));
+     app.get(
+       "/admin",
+       requireAuth,
+       withAdmin((req, res) => {
+         res.send("Admin page");
+       }),
+     );
      ```
 
 5. **Singleton Pattern**:
+
    - The Singleton Pattern is used in Express.js to ensure that there is only one instance of the Express application object, which can be accessed globally throughout the application.
    - Example:
+
      ```javascript
      // app.js
-     const express = require('express');
+     const express = require("express");
 
      class ExpressApp {
        static getInstance() {
@@ -124,36 +137,41 @@ These are some of the common design patterns used in Express.js. Each pattern se
 Absolutely, here are a few more design patterns commonly used in Express.js:
 
 6. **Observer Pattern**:
+
    - The Observer Pattern is used in Express.js to implement event-driven architectures, where middleware functions or route handlers can subscribe to and respond to specific events, such as request or response events.
    - Example:
+
      ```javascript
-     const express = require('express');
+     const express = require("express");
      const app = express();
 
      // Create an event emitter
-     const requestEmitter = app.get('requestEmitter') || new events.EventEmitter();
-     app.set('requestEmitter', requestEmitter);
+     const requestEmitter =
+       app.get("requestEmitter") || new events.EventEmitter();
+     app.set("requestEmitter", requestEmitter);
 
      // Middleware to emit request event
      app.use((req, res, next) => {
-       requestEmitter.emit('request', req);
+       requestEmitter.emit("request", req);
        next();
      });
 
      // Middleware to handle the request event
-     requestEmitter.on('request', (req) => {
+     requestEmitter.on("request", (req) => {
        console.log(`Received request: ${req.method} ${req.url}`);
      });
      ```
 
 7. **Strategy Pattern**:
+
    - The Strategy Pattern is used in Express.js to encapsulate different request handling strategies, such as error handling, request validation, or response formatting, and allow them to be interchanged or combined as needed.
    - Example:
+
      ```javascript
      // ErrorHandlingStrategy.js
      class ErrorHandlingStrategy {
        handle(err, req, res, next) {
-         res.status(500).json({ error: 'Internal server error' });
+         res.status(500).json({ error: "Internal server error" });
        }
      }
 
@@ -161,28 +179,30 @@ Absolutely, here are a few more design patterns commonly used in Express.js:
      class ValidationStrategy {
        handle(req, res, next) {
          if (!req.body.name) {
-           return res.status(400).json({ error: 'Name is required' });
+           return res.status(400).json({ error: "Name is required" });
          }
          next();
        }
      }
 
      // app.js
-     const express = require('express');
+     const express = require("express");
      const app = express();
 
      app.use(express.json());
      app.use(new ValidationStrategy().handle);
-     app.post('/users', (req, res) => {
+     app.post("/users", (req, res) => {
        // Handle creating a new user
-       res.json({ message: 'User created' });
+       res.json({ message: "User created" });
      });
      app.use(new ErrorHandlingStrategy().handle);
      ```
 
 8. **Adapter Pattern**:
+
    - The Adapter Pattern is used in Express.js to convert the interface of a third-party library or middleware to match the expected interface of the Express application, making it easier to integrate and use.
    - Example:
+
      ```javascript
      // ThirdPartyLogger.js
      class ThirdPartyLogger {
@@ -204,18 +224,20 @@ Absolutely, here are a few more design patterns commonly used in Express.js:
      }
 
      // app.js
-     const express = require('express');
+     const express = require("express");
      const app = express();
-     const ThirdPartyLogger = require('./ThirdPartyLogger');
-     const LoggerAdapter = require('./LoggerAdapter');
+     const ThirdPartyLogger = require("./ThirdPartyLogger");
+     const LoggerAdapter = require("./LoggerAdapter");
 
      const logger = new LoggerAdapter(new ThirdPartyLogger());
      app.use(logger.error);
      ```
 
 9. **Composite Pattern**:
+
    - The Composite Pattern is used in Express.js to create a hierarchical structure of middleware functions and route handlers, allowing for easier composition and reuse of these components.
    - Example:
+
      ```javascript
      // CompositeMiddleware.js
      class CompositeMiddleware {
@@ -240,9 +262,9 @@ Absolutely, here are a few more design patterns commonly used in Express.js:
      }
 
      // app.js
-     const express = require('express');
+     const express = require("express");
      const app = express();
-     const CompositeMiddleware = require('./CompositeMiddleware');
+     const CompositeMiddleware = require("./CompositeMiddleware");
 
      const authMiddleware = (req, res, next) => {
        // Perform authentication logic
@@ -264,19 +286,21 @@ Absolutely, here are a few more design patterns commonly used in Express.js:
 Absolutely, here are a few more design patterns that are commonly used in Express.js:
 
 10. **Facade Pattern**:
+
     - The Facade Pattern is used in Express.js to provide a simplified interface to a more complex set of functionality, such as a collection of middleware functions or route handlers.
     - Example:
+
       ```javascript
       // UserFacade.js
       class UserFacade {
         static createUser(req, res, next) {
           // Handle user creation logic
-          res.status(201).json({ message: 'User created' });
+          res.status(201).json({ message: "User created" });
         }
 
         static updateUser(req, res, next) {
           // Handle user update logic
-          res.json({ message: 'User updated' });
+          res.json({ message: "User updated" });
         }
 
         static deleteUser(req, res, next) {
@@ -286,17 +310,19 @@ Absolutely, here are a few more design patterns that are commonly used in Expres
       }
 
       // app.js
-      const express = require('express');
+      const express = require("express");
       const app = express();
 
-      app.post('/users', UserFacade.createUser);
-      app.put('/users/:id', UserFacade.updateUser);
-      app.delete('/users/:id', UserFacade.deleteUser);
+      app.post("/users", UserFacade.createUser);
+      app.put("/users/:id", UserFacade.updateUser);
+      app.delete("/users/:id", UserFacade.deleteUser);
       ```
 
 11. **Chain of Responsibility Pattern**:
+
     - The Chain of Responsibility Pattern is used in Express.js to create a chain of middleware functions that can handle a request, with each middleware function deciding whether to handle the request or pass it on to the next middleware function in the chain.
     - Example:
+
       ```javascript
       // AuthorizationMiddleware.js
       class AuthorizationMiddleware {
@@ -308,7 +334,7 @@ Absolutely, here are a few more design patterns that are commonly used in Expres
           if (req.user && req.user.isAdmin) {
             next();
           } else {
-            res.status(403).json({ error: 'Forbidden' });
+            res.status(403).json({ error: "Forbidden" });
           }
         }
       }
@@ -323,30 +349,33 @@ Absolutely, here are a few more design patterns that are commonly used in Expres
           if (req.body.name) {
             this.nextMiddleware.handle(req, res, next);
           } else {
-            res.status(400).json({ error: 'Name is required' });
+            res.status(400).json({ error: "Name is required" });
           }
         }
       }
 
       // app.js
-      const express = require('express');
+      const express = require("express");
       const app = express();
 
       const validateInputMiddleware = new ValidateInputMiddleware(
-        new AuthorizationMiddleware(
-          (req, res, next) => {
-            // Handle the request
-            res.json({ message: 'Resource created' });
-          }
-        )
+        new AuthorizationMiddleware((req, res, next) => {
+          // Handle the request
+          res.json({ message: "Resource created" });
+        }),
       );
 
-      app.post('/resources', validateInputMiddleware.handle.bind(validateInputMiddleware));
+      app.post(
+        "/resources",
+        validateInputMiddleware.handle.bind(validateInputMiddleware),
+      );
       ```
 
 12. **Template Method Pattern**:
+
     - The Template Method Pattern is used in Express.js to define a base class or abstract class for middleware functions or route handlers, allowing subclasses to customize specific steps in the request handling process.
     - Example:
+
       ```javascript
       // BaseController.js
       class BaseController {
@@ -377,7 +406,7 @@ Absolutely, here are a few more design patterns that are commonly used in Expres
 
         processRequest(req, res) {
           // Handle the user-specific request logic
-          res.json({ message: 'User processed' });
+          res.json({ message: "User processed" });
         }
 
         postProcess(req, res) {
@@ -386,11 +415,11 @@ Absolutely, here are a few more design patterns that are commonly used in Expres
       }
 
       // app.js
-      const express = require('express');
+      const express = require("express");
       const app = express();
 
       const userController = new UserController();
-      app.get('/users', (req, res, next) => {
+      app.get("/users", (req, res, next) => {
         userController.handleRequest(req, res, next);
       });
       ```

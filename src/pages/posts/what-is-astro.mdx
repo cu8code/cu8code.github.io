@@ -1,9 +1,9 @@
 ---
-title: 'what is astro?'
+title: "what is astro?"
 pubDate: 2024-04-18
-description: 'what is astro!'
+description: "what is astro!"
 layout: ../../layouts/Page.astro
-author: 'ankan roy'
+author: "ankan roy"
 ---
 
 ### What is Astro.js?
@@ -91,7 +91,7 @@ In this example, the `Counter` component is a React component that is hydrated o
 
 Overall, Astro.js is a promising new static site generator that aims to provide a modern, developer-friendly approach to building fast, content-driven websites and web applications.
 
-### What is the use of client:* in a astro component ?
+### What is the use of client:\* in a astro component ?
 
 In Astro.js, the `client:*` directives are used to control the hydration and interactivity of your components on the client-side. These directives allow you to selectively hydrate certain components, while keeping the rest of the page static.
 
@@ -135,8 +135,8 @@ In this example, the `Counter` component is a React component that is hydrated o
 
 By using the appropriate `client:*` directive, you can strike a balance between server-side rendering for improved initial load times and client-side hydration for interactivity and dynamic functionality.
 
-
 ### How to add support for React in Astro?
+
 you'll need to follow these steps:
 
 1. Install the necessary dependencies:
@@ -150,7 +150,7 @@ you'll need to follow these steps:
 2. Import the `@astrojs/react` integration in your Astro project's configuration file (`astro.config.mjs` or `astro.config.js`):
 
    ```javascript
-   import react from '@astrojs/react';
+   import react from "@astrojs/react";
 
    export default {
      integrations: [react()],
@@ -162,7 +162,7 @@ you'll need to follow these steps:
 3. Create a React component in your Astro project. For example, create a file `src/components/MyReactComponent.jsx`:
 
    ```jsx
-   import React from 'react';
+   import React from "react";
 
    const MyReactComponent = () => {
      return (
@@ -211,6 +211,7 @@ Important things to remember when using React with Astro:
 By following these guidelines, you can seamlessly integrate React components into your Astro-powered projects and take advantage of the benefits of both technologies.
 
 ### How to add support for MDX?
+
 To add support for MDX (Markdown with JSX) in your Astro project, you'll need to follow these steps:
 
 1. Install the necessary dependencies:
@@ -224,7 +225,7 @@ To add support for MDX (Markdown with JSX) in your Astro project, you'll need to
 2. Import the `@astrojs/mdx` integration in your Astro project's configuration file (`astro.config.mjs` or `astro.config.js`):
 
    ```javascript
-   import mdx from '@astrojs/mdx';
+   import mdx from "@astrojs/mdx";
 
    export default {
      integrations: [mdx()],
@@ -292,7 +293,6 @@ Important things to remember when using MDX with Astro:
 
 By following these steps, you can easily add support for MDX in your Astro-powered projects and take advantage of the benefits of combining Markdown and React components.
 
-
 ### How to use routing
 
 Astro provides a built-in, file-based routing system that allows you to create and manage the pages of your website or web application. Here's how you can use routing in Astro:
@@ -318,9 +318,9 @@ Astro provides a built-in, file-based routing system that allows you to create a
      router: {
        routes: [
          {
-           pattern: '/api/*',
-           match: 'prefix',
-           src: './src/api/[...slug].js',
+           pattern: "/api/*",
+           match: "prefix",
+           src: "./src/api/[...slug].js",
          },
        ],
      },
@@ -344,11 +344,13 @@ Astro provides a built-in, file-based routing system that allows you to create a
 By leveraging Astro's file-based routing system and the built-in routing features, you can easily create and manage the pages of your Astro-powered website or web application.
 
 ### What is layouts ?
+
 In Astro, layouts are a way to define a common structure or template for your pages. Layouts help you avoid repeating the same HTML structure, such as the `<head>` section or the main content wrapper, across multiple pages.
 
 Here's how you can work with layouts in Astro:
 
 1. **Creating a Layout File**:
+
    - Create a new file in the `src/layouts` directory, for example, `src/layouts/MainLayout.astro`.
    - This file should contain the common HTML structure that you want to reuse across your pages.
 
@@ -377,6 +379,7 @@ Here's how you can work with layouts in Astro:
    ```
 
 2. **Using a Layout**:
+
    - In your page files (e.g., `src/pages/index.astro`, `src/pages/about.astro`), you can use the layout by adding a frontmatter block and specifying the layout file.
 
    ```yaml
@@ -384,13 +387,14 @@ Here's how you can work with layouts in Astro:
    # src/pages/index.astro
    import MySiteLayout from '../layouts/MySiteLayout.astro';
    ---
-    <MySiteLayout>
+   <MySiteLayout>
    <h1>Welcome to my Astro site!</h1>
    <p>This is the home page.</p>
-    </MySiteLayout>
+   </MySiteLayout>
    ```
 
 3. **Passing Data to Layouts**:
+
    - You can pass data from your page files to the layout by defining variables in the frontmatter block.
    - These variables will be available in the layout file, and you can use them to customize the layout.
 
@@ -400,12 +404,12 @@ Here's how you can work with layouts in Astro:
    layout: MainLayout.astro
    title: About
    ---
-
    <h1>About Us</h1>
    <p>This is the about page.</p>
    ```
 
 4. **Nested Layouts**:
+
    - Astro also supports nested layouts, where you can have a parent layout and child layouts.
    - To use a nested layout, simply specify the layout chain in the frontmatter block, with the parent layout first.
 
@@ -415,7 +419,6 @@ Here's how you can work with layouts in Astro:
    layout: [MainLayout.astro, BlogLayout.astro]
    title: Blog Post
    ---
-
    <h1>My Blog Post</h1>
    <p>This is the content of the blog post.</p>
    ```

@@ -1,9 +1,7 @@
 ---
 const allpost = await Astro.glob("./posts/*.md*");
 import Page from "@/layouts/Page.astro";
----
-
-<Page>
+  /*
     <ul>
         {
             allpost.map((post) => {
@@ -15,4 +13,83 @@ import Page from "@/layouts/Page.astro";
             })
         }
     </ul>
+  */
+---
+<style>
+    .bg-grid {
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px), 
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+      background-size: 80px 80px;
+      position: relative;
+    }
+    .circular-fade::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, transparent, rgba(0, 0, 0, 0.8));
+      z-index: 1;
+      pointer-events: none;
+    }
+  .gradient-text {
+      background: linear-gradient(to bottom, white, rgb(236, 174, 236));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .neon-border {
+    border: 2px solid transparent;
+    border-radius: 10px;
+    position: relative;
+  }
+  .neon-border::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 40px rgba(236, 174, 236, 0.5), 
+                0 0 50px rgba(236, 174, 236, 0.4), 
+                0 0 60px rgba(236, 174, 236, 0.3), 
+                0 0 70px rgba(236, 174, 236, 0.2), 
+                0 0 80px rgba(236, 174, 236, 0.1);
+  }
+
+</style>
+
+<Page>
+  <div class="w-screen min-h-screen grid place-items-center circular-fade bg-grid">
+    <main class="relative z-10 w-full max-w-xl text-white text-center space-y-4">
+      <div class="text-xl text-slate-400">read our blog</div>
+      <div class="w-full max-w-full">
+        <div class="text-5xl font-medium text-nowrap">Speed up your idea<br> 
+          <span class="gradient-text font-normal text-nowrap">build your mpv in 15 days</span>
+        </div>
+      </div>
+      <div class="text-xl text-slate-400">Identify and fix product problem in minutes, not months</div>
+      <div class="text-xl w-full flex justify-center gap-2">
+        <button type="button" class="bg-white text-black text-xl border rounded-2xl p-2 pr-6 pl-6 shadow-2xl text-center justify-center">book a call</button>
+        <button type="button" class="bg-black text-xl border rounded-2xl p-2 pr-6 pl-6 shadow-2xl text-center justify-center">$ calculator</button>
+      </div>
+    </main>
+    <div class="w-full max-w-3xl">
+      <div class="w-full h-[450px] bg-black border neon-border">
+        <div class="w-full flex items-center gap-1 justify-end p-1">
+          <div class="bg-green-300 h-3 w-3 rounded-full"></div>
+          <div class="bg-yellow-300 h-3 w-3 rounded-full"></div>
+          <div class="bg-red-500 h-3 w-3 rounded-full"></div>
+        </div>
+        <div class="p-1 flex w-full gap-1">
+          <div class="border flex w-[150px] h-[30px] rounded"></div>
+          <div class="border border-gray-700 flex w-[150px] h-[30px] rounded"></div>
+          <div class="border border-gray-700 flex w-[150px] h-[30px] rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </Page>

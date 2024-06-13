@@ -1,32 +1,36 @@
 ---
-title: 'common path finding algo with pros and cons?'
+title: "common path finding algo with pros and cons?"
 pubDate: 2024-04-18
-description: 'path finding!'
-author: 'Ankan Roy'
+description: "path finding!"
+author: "Ankan Roy"
 layout: ../../layouts/Page.astro
 ---
 
-### Dijkstra's algorithm 
+### Dijkstra's algorithm
+
 is a widely used path-finding algorithm that finds the shortest path between two nodes in a weighted graph. Here's a more detailed explanation of the algorithm, along with its pros and cons:
 
 Dijkstra's Algorithm:
+
 1. **Initialization**: Set the distance to the starting node as 0 and the distance to all other nodes as infinity.
 2. **Selection**: Select the unvisited node with the smallest distance from the set of unvisited nodes.
 3. **Relaxation**: For each unvisited neighbor of the selected node, update the distance to that neighbor if the sum of the distance to the selected node and the weight of the edge between the selected node and the neighbor is smaller than the current distance to the neighbor.
 4. **Repeat**: Repeat steps 2 and 3 until all nodes have been visited.
 
 Pros of Dijkstra's Algorithm:
+
 1. **Optimality**: Dijkstra's algorithm is guaranteed to find the shortest path between the starting node and the destination node, as long as all edge weights are non-negative.
 2. **Simplicity**: The algorithm is relatively straightforward to understand and implement, making it a popular choice for many applications.
 3. **Versatility**: Dijkstra's algorithm can be used in a wide range of applications, including route planning, network routing, and resource allocation.
 
 Cons of Dijkstra's Algorithm:
+
 1. **Time Complexity**: The time complexity of Dijkstra's algorithm is O(E + V log V), where E is the number of edges and V is the number of vertices in the graph. This makes it less efficient for large graphs with many edges and vertices.
 2. **Memory Complexity**: Dijkstra's algorithm requires storing the distances and previous nodes for each visited vertex, which can consume a lot of memory, especially for large graphs.
 3. **Negative Edge Weights**: Dijkstra's algorithm cannot handle graphs with negative edge weights, as it may produce incorrect results in such cases.
-4. **Lack of Heuristics**: Dijkstra's algorithm does not use any heuristic information to guide the search, which can make it less efficient than other algorithms, such as A* search, in some cases.
+4. **Lack of Heuristics**: Dijkstra's algorithm does not use any heuristic information to guide the search, which can make it less efficient than other algorithms, such as A\* search, in some cases.
 
-To address the limitations of Dijkstra's algorithm, various modifications and alternative algorithms have been developed, such as the A* search algorithm, which incorporates a heuristic function to guide the search, and the Bellman-Ford algorithm, which can handle graphs with negative edge weights.
+To address the limitations of Dijkstra's algorithm, various modifications and alternative algorithms have been developed, such as the A\* search algorithm, which incorporates a heuristic function to guide the search, and the Bellman-Ford algorithm, which can handle graphs with negative edge weights.
 
 ```python
 from collections import deque

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
+import noise from "@/assets/noise.png"
 
-const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${montserrat.className}  bg-gray-100`} style={{
+        backgroundImage: `url(${noise.src})`,
+        backgroundSize: "100px 100px", // Adjust this to match your image size
+        backgroundPosition: "0 0",
+        backgroundRepeat: "repeat",
+        backgroundAttachment: "fixed",
+
+      }}>{children}</body>
     </html>
   );
 }

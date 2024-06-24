@@ -50,7 +50,7 @@ const SpinningComponent = () => {
 };
 
 
-const Hero = async (props: ComponentPropsWithoutRef<"div">) => {
+const Hero = (props: ComponentPropsWithoutRef<"div">) => {
     return (
         <div className={"h-lvh text-black"} {...props}>
             <div className="absolute translate-x-1/2 translate-y-1/2 left-[20%]">

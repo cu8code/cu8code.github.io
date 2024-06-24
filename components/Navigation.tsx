@@ -35,7 +35,7 @@ const Navigation = () => {
         >
             <ul className="flex flex-row gap-4 w-full justify-between">
                 <motion.li variants={itemVariants} className="w-full items-start flex">
-                    <a>Anka Roy {(new Date()).getFullYear() - 2004}'</a>
+                    <a>Anka Roy {(new Date()).getFullYear() - 2004}&apos;</a>
                 </motion.li>
                 <motion.li variants={itemVariants} className="w-full items-start flex">
                     <a href="/about">About</a>

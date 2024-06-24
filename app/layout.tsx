@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className}  bg-gray-100`} style={{
+      <body className={`${montserrat.className}  bg-gray-100 overflow-x-hidden`} style={{
         backgroundImage: `url(${noise.src})`,
         backgroundSize: "100px 100px", // Adjust this to match your image size
         backgroundPosition: "0 0",

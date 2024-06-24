@@ -17,10 +17,7 @@ const About = async () => {
                 <ScrollRevealText>
                     When I'm not coding, I am a passionate traveler who enjoys discovering new cultures and experimenting with different flavors. I keep up with the latest industry trends and technologies, bringing fresh ideas and efficient solutions to every project, consistently delivering high-quality results.
                 </ScrollRevealText>
-
-                <ScrollRevealText>
-                    Technologies I'm familiar with:
-                </ScrollRevealText>
+                
             </div>
         </div>
     )

@@ -29,7 +29,7 @@ const randomMovement = () => ({
 const RandomMotionComponent = () => {
     return (
         <motion.div
-            className="absolute w-full h-full lg:h-[100vh] flex items-center justify-center bg-blend-screen"
+            className="absolute w-full h-full flex items-center justify-center bg-blend-screen"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ opacity: { duration: 3 } }}
@@ -41,7 +41,7 @@ const RandomMotionComponent = () => {
                     initial={{
                         x: 0,
                         y: 0,
-                        backgroundColor: ["#3b82f6", "#10b981", "#f59e0b", "#8b5cf6"][index]
+                        backgroundColor: ["#333333", "#666666", "#999999", "#CCCCCC"][index]
                     }}
                     animate={randomMovement()}
                     transition={{
@@ -57,17 +57,26 @@ const RandomMotionComponent = () => {
 };
 
 
+
 const Hero = (props: ComponentPropsWithoutRef<"div">) => {
+    const videoId = "C3iHAgwIYtI";
+    const startTime = 11; // Start time in seconds
 
     return (
-        <div className={" text-black"} {...props}>
+        <div className="text-black" {...props}>
             <RandomMotionComponent />
             <div className="flex flex-col w-full pt-36 md:pt-32">
-                <div className="z-10 flex flex-row rounded-3xl shadow-2xl overflow-hidden max-w-6xl w-[90vw] md:w-full h-[70vh] lg:h-[70vh] m-auto bg-white/[0.2]"></div>
+                <iframe
+                    className="z-10 flex flex-row rounded-3xl shadow-2xl overflow-hidden max-w-6xl w-[90vw] md:w-full h-[70vh] lg:h-[70vh] m-auto bg-white/[0.2]"
+                    width="560"
+                    height="315"
+                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=${videoId}&mute=1&iv_load_policy=3&start=${startTime}`}
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                ></iframe>
             </div>
         </div>
-    )
-}
-
+    );
+};
 
 export default Hero

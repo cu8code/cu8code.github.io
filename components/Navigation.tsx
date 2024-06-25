@@ -33,8 +33,8 @@ const Navigation = () => {
             animate="visible"
             variants={navVariants}
         >
-            <ul className="flex flex-row gap-4 w-full justify-between">
-                <motion.li variants={itemVariants} className="w-full items-start flex">
+            <ul className="flex flex-row gap-4 w-full m-auto max-w-6xl items-center justify-center">
+                <motion.li variants={itemVariants} className="w-full items-start flex text-nowrap">
                     <a>Anka Roy {(new Date()).getFullYear() - 2004}&apos;</a>
                 </motion.li>
                 <motion.li variants={itemVariants} className="w-full items-start flex">

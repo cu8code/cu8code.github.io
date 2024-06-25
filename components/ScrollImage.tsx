@@ -23,7 +23,7 @@ const ScrollImage = () => {
                 background: "blue",
             }}
         >
-            <Image className="scale-[400%]" src={dp} alt="Profile" width={100} height={100} />
+            <Image className=" scale-[400%]" src={dp} alt="Profile" width={100} height={100} />
         </motion.div>
     )
 }

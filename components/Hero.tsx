@@ -1,9 +1,14 @@
 "use client"
 
-import { useEffect, useState, type ComponentPropsWithoutRef } from "react"
+import { useEffect, useRef, useState, type ComponentPropsWithoutRef } from "react"
 import { Playfair_Display } from "next/font/google"
 import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion"
 import AnimatedText from "./AnimateText"
+// @ts-ignore
+import GlslCanvas from "glslCanvas"
+import Image from "next/image"
+import bg from "@/assets/bg.png"
+import dddepth from "@/assets/dddepth.jpg"
 
 
 const playfair = Playfair_Display({
@@ -33,17 +38,17 @@ const RandomMotionComponent = () => {
                 <motion.div
                     key={index}
                     className="h-[10vw] w-[10vw] rounded-full blur-3xl"
-                    initial={{ 
+                    initial={{
                         x: 0,
                         y: 0,
                         backgroundColor: ["#3b82f6", "#10b981", "#f59e0b", "#8b5cf6"][index]
                     }}
                     animate={randomMovement()}
-                    transition={{ 
-                        duration: 4, 
-                        repeat: Infinity, 
-                        repeatType: "reverse", 
-                        ease: "easeInOut" 
+                    transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut"
                     }}
                 />
             ))}
@@ -53,19 +58,13 @@ const RandomMotionComponent = () => {
 
 
 const Hero = (props: ComponentPropsWithoutRef<"div">) => {
+  
     return (
         <div className={"h-lvh text-black"} {...props}>
             <RandomMotionComponent />
-            <div className="grid place-items-center h-full">
-                <div className="flex flex-col items-center justify-center gap-6">
-                    <AnimatedText
-                        text="Ankan Roy"
-                        className={`${playfair.className} text-9xl tracking-widest`}
-                    />
-                    <AnimatedText
-                        text="A Digital neerd based in Asia India Kolkata"
-                        className="text-3xl font-light uppercase"
-                    />
+            <div className="h-full">
+                <div className="flex flex-col w-full pt-20 md:pt-32">
+                    <div className="z-10 flex flex-row rounded-3xl shadow-2xl overflow-hidden max-w-6xl w-full h-[100vh] lg:h-[70vh] m-auto bg-white/[0.2]"></div>
                 </div>
             </div>
         </div>

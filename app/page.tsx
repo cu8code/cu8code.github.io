@@ -7,10 +7,9 @@ import ScrollImage from "@/components/ScrollImage";
 const Home = async () => {
   return (
     <>
-      <PointerComponent />
       <Navigation />
       <Hero />
-      <div className="absolute -bottom-48 left-[48%]">
+      <div className="z-20 hidden md:block absolute -bottom-48 left-[48%]">
           <ScrollImage />
       </div>
       <About />

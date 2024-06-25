@@ -1,6 +1,7 @@
 import About from "@/components/About";
 import Career from "@/components/Career";
 import Hero from "@/components/Hero";
+import Linktree from "@/components/Linktree";
 import Navigation from "@/components/Navigation";
 import Project from "@/components/Projects";
 import ScrollImage from "@/components/ScrollImage";
@@ -16,6 +17,7 @@ const Home = async () => {
       <About />
       <Career />
       <Project />
+      <Linktree />
     </>
   );
 }

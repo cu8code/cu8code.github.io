@@ -19,7 +19,7 @@ const Project = () => {
                         <FaExternalLinkAlt className="font-bold max-w-4xl" />
                     </div>
                     <div className="flex flex-col lg:flex-row w-full h-full gap-5 mt-10">
-                        <video width="600" height="400" controls={false} preload="none" autoPlay={true} loop={true} muted={true} src="/flang.mp4" />
+                        <video className="m-auto" width="600" height="400" controls={false} preload="none" autoPlay={true} loop={true} muted={true} src="/flang.mp4" />
                         <div className="grid place-items-center p-2 text-xl overflow-hidden">
                             I created this fun programming language to gain a better understanding of how programming languages work. its very basic , as of writing this README it can
                         </div>
@@ -33,7 +33,7 @@ const Project = () => {
                     </div>
                     <div className="flex flex-col-reverse lg:flex-row w-full h-full gap-5 mt-10">
                         <div className="grid place-items-center p-2 text-xl overflow-hidden">
-                            A project that runs your code in a sandbox enviorment for quick testing and prototyping
+                            A project that runs your code in a sandbox enviorment for quick testing and prototyping. The backend is build the REST architecture.
                         </div>
                         <Image src={codeRunnerPng} width={600} height={400} className="flex object-cover m-auto shadow-2xl" alt="Code Runner" />
                     </div>

@@ -1,22 +1,7 @@
 "use client"
 
-import { useEffect, useRef, useState, type ComponentPropsWithoutRef } from "react"
-import { Playfair_Display } from "next/font/google"
-import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion"
-import AnimatedText from "./AnimateText"
-// @ts-ignore
-import GlslCanvas from "glslCanvas"
-import Image from "next/image"
-import bg from "@/assets/bg.png"
-import dddepth from "@/assets/dddepth.jpg"
-
-
-const playfair = Playfair_Display({
-    weight: ["400", "500", "600", "700", "800", "900"],
-    subsets: ["latin"],
-    display: "swap",
-    variable: "--font-playfair",
-})
+import { type ComponentPropsWithoutRef } from "react"
+import { motion } from "framer-motion"
 
 
 const randomMovement = () => ({
@@ -65,7 +50,7 @@ const Hero = (props: ComponentPropsWithoutRef<"div">) => {
     return (
         <div className="text-black" {...props}>
             <RandomMotionComponent />
-            <div className="flex flex-col w-full pt-36 md:pt-32">
+            <div className="flex flex-col w-full pt-36 md:pt-32 md:p-10">
                 <iframe
                     className="z-10 flex flex-row rounded-3xl shadow-2xl overflow-hidden max-w-6xl w-[90vw] md:w-full h-[70vh] lg:h-[70vh] m-auto bg-white/[0.2]"
                     width="560"

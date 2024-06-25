@@ -1,7 +1,8 @@
 import About from "@/components/About";
+import Career from "@/components/Career";
 import Hero from "@/components/Hero";
 import Navigation from "@/components/Navigation";
-import PointerComponent from "@/components/Pointer";
+import Project from "@/components/Projects";
 import ScrollImage from "@/components/ScrollImage";
 
 const Home = async () => {
@@ -13,6 +14,8 @@ const Home = async () => {
           <ScrollImage />
       </div>
       <About />
+      <Career />
+      <Project />
     </>
   );
 }

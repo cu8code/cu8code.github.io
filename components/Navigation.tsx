@@ -38,10 +38,10 @@ const Navigation = () => {
                     <a>Anka Roy {(new Date()).getFullYear() - 2004}&apos;</a>
                 </motion.li>
                 <motion.li variants={itemVariants} className="w-full items-start flex">
-                    <a href="/about">About</a>
+                    <a href="/#about">About</a>
                 </motion.li>
                 <motion.li variants={itemVariants} className="w-full items-end flex justify-end">
-                    <a href="/contact">Contact</a>
+                    <a href="/#linktree">Linktree</a>
                 </motion.li>
             </ul>
         </motion.nav>

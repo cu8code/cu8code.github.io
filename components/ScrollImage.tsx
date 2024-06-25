@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const ScrollImage = () => {
     const { scrollYProgress } = useScroll();
-    const yPos = useTransform(scrollYProgress, [0, 1], [0, -400]);
+    const yPos = useTransform(scrollYProgress, [0, 1], [0, -1400]);
     const rotate = useTransform(scrollYProgress, [0, 1], [10, -20]);
 
 

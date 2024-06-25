@@ -29,7 +29,7 @@ const randomMovement = () => ({
 const RandomMotionComponent = () => {
     return (
         <motion.div
-            className="absolute w-[100vw] h-[100vh] flex items-center justify-center bg-blend-screen"
+            className="absolute w-full h-full lg:h-[100vh] flex items-center justify-center bg-blend-screen"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ opacity: { duration: 3 } }}
@@ -58,14 +58,12 @@ const RandomMotionComponent = () => {
 
 
 const Hero = (props: ComponentPropsWithoutRef<"div">) => {
-  
+
     return (
-        <div className={"h-lvh text-black"} {...props}>
+        <div className={" text-black"} {...props}>
             <RandomMotionComponent />
-            <div className="h-full">
-                <div className="flex flex-col w-full pt-20 md:pt-32">
-                    <div className="z-10 flex flex-row rounded-3xl shadow-2xl overflow-hidden max-w-6xl w-full h-[100vh] lg:h-[70vh] m-auto bg-white/[0.2]"></div>
-                </div>
+            <div className="flex flex-col w-full pt-36 md:pt-32">
+                <div className="z-10 flex flex-row rounded-3xl shadow-2xl overflow-hidden max-w-6xl w-[90vw] md:w-full h-[70vh] lg:h-[70vh] m-auto bg-white/[0.2]"></div>
             </div>
         </div>
     )
